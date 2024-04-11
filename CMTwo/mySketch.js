@@ -83,13 +83,12 @@ function displayText() {
         link.position(width / 2 - link.width / 2, height / 2);
         linked=true;
        }
-			 }
     } else {
       textAlign(CENTER, BOTTOM);
       text(currentText, width / 2, height - 10); // Otherwise, display the text at the bottom
     }
   }
-
+}
 
 function getHoverText() {
   for (let obj in interactions) {
