@@ -8,6 +8,8 @@ let interactions = {
 let currentText = "";
 let hasKey = false;
 let escaped = false;
+let black = false;
+let linked = false;
 
 function preload() {
   roomImage = loadImage('room.png'); // Preload the room image before the game starts
@@ -21,7 +23,10 @@ function draw() {
   if (!escaped) {
     image(roomImage, 0, 0); // Draw the room image
   } else {
-    background(0); // If escaped, show a black screen
+    if(!black) {
+      background(0); // If escaped, show a black screen
+      black = true;
+    }
   }
 
   textSize(20); // Set text size
@@ -67,7 +72,7 @@ function displayText() {
     strokeWeight(3);
     textAlign(CENTER, CENTER);
     if (escaped) {
-			 setTimeout(function() {
+			 if (!linked) {
         let link = createA('twine.html', currentText);
         link.style('font-size', '32px'); // Large text
         link.style('color', '#FFFFFF'); // White text
@@ -75,14 +80,16 @@ function displayText() {
         link.style('text-decoration', 'none'); // No underline
   
           // Position the link in the center
-          link.position(width / 2 - link.width / 2, height / 2);
-			 }, 100000);
+        link.position(width / 2 - link.width / 2, height / 2);
+        linked=true;
+       }
+			 }
     } else {
       textAlign(CENTER, BOTTOM);
       text(currentText, width / 2, height - 10); // Otherwise, display the text at the bottom
     }
   }
-}
+
 
 function getHoverText() {
   for (let obj in interactions) {
