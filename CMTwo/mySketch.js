@@ -75,6 +75,9 @@ function displayText() {
 
  			 // Position the link in the center
  			 link.position(width / 2 - link.width / 2, height / 2);
+			 setTimeout(function() {
+			 // wait
+			 }, 100000);
     } else {
       textAlign(CENTER, BOTTOM);
       text(currentText, width / 2, height - 10); // Otherwise, display the text at the bottom
